@@ -2,12 +2,20 @@ import json
 
 data = json.load(open('data.json'))
 
-user_input = input('Enter a word: ')
-user_input = user_input.lower()
+def translate(word):
+    return data[word]
 
-while user_input != 'quit_program':
-    print(data[user_input])
-    user_input = input('Enter a word: ')
-    user_input = user_input.lower()
+word = input('Enter a word: ')
+word = word.lower()
 
+while word != 'quit_program':
+    if word not in data:
+        print('Please check your word again')
+        word = input('Enter a word: ')
+        word = word.lower()
+        continue
+    else:
+        print(translate(word))
+        word = input('Enter a word: ')
+        word = word.lower()
 print('Program ended')
